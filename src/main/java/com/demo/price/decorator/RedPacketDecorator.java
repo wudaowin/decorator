@@ -22,7 +22,7 @@ public class RedPacketDecorator extends BaseCountDecorator {
 
   public BigDecimal countPayMoney(OrderDetail orderDetail) {
     BigDecimal payTotalMoney = new BigDecimal(0);
-    payTotalMoney = super.countPayMoney(orderDetail);
+    super.countPayMoney(orderDetail);
     payTotalMoney = countCouponPayMoney(orderDetail);
     return payTotalMoney;
   }

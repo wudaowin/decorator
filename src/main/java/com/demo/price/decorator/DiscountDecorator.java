@@ -23,7 +23,7 @@ public class DiscountDecorator extends BaseCountDecorator {
 
   public BigDecimal countPayMoney(OrderDetail orderDetail) {
     BigDecimal payTotalMoney = new BigDecimal(0);
-    payTotalMoney = super.countPayMoney(orderDetail);
+    super.countPayMoney(orderDetail);
     payTotalMoney = countDiscountPayMoney(orderDetail);
     return payTotalMoney;
   }

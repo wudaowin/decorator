@@ -22,8 +22,8 @@ public class CouponDecorator extends BaseCountDecorator {
   }
 
   public BigDecimal countPayMoney(OrderDetail orderDetail) {
+    super.countPayMoney(orderDetail);
     BigDecimal payTotalMoney = new BigDecimal(0);
-    payTotalMoney = super.countPayMoney(orderDetail);
     payTotalMoney = countCouponPayMoney(orderDetail);
     return payTotalMoney;
   }
