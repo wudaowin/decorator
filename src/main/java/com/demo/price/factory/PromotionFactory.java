@@ -10,7 +10,9 @@ import com.demo.price.decorator.CouponDecorator;
 import com.demo.price.decorator.DiscountDecorator;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 计算促销后的支付价格
@@ -24,11 +26,14 @@ public class PromotionFactory {
     // 获取给商品设定的促销类型
     List<SupportPromotions> supportPromotionslist =
         orderDetail.getMerchandise().getSupportPromotionsList();
+    List<SupportPromotions> supportPromotionsSortedList = supportPromotionslist.stream()
+            .sorted(Comparator.comparing(SupportPromotions::getPriority))
+            .collect(Collectors.toList());
     // 初始化计算类
     IBaseCount baseCount = new BaseCount();
-    if (supportPromotionslist != null && supportPromotionslist.size() > 0) {
+    if (supportPromotionsSortedList.size() > 0) {
       // 遍历设置的促销类型，通过装饰器组合促销类型
-      for (SupportPromotions supportPromotions : supportPromotionslist) {
+      for (SupportPromotions supportPromotions : supportPromotionsSortedList) {
         baseCount = protmotion(supportPromotions, baseCount);
       }
     }
