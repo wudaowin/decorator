@@ -114,9 +114,7 @@ public class AppMain {
     supportPromotions3.setUserDiscount(userDiscount1);
     supportPromotionslist.add(supportPromotions3);
 
-    return supportPromotionslist.stream()
-        .sorted(Comparator.comparing(SupportPromotions::getPriority))
-        .collect(Collectors.toList());
+    return supportPromotionslist;
   }
 
   /**
@@ -149,8 +147,6 @@ public class AppMain {
     supportPromotionslist.add(supportPromotions2);
 
 
-    return supportPromotionslist.stream()
-            .sorted(Comparator.comparing(SupportPromotions::getPriority))
-            .collect(Collectors.toList());
+    return supportPromotionslist;
   }
 }
